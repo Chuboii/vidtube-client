@@ -9,7 +9,7 @@ import SkeletonLoading from '../../components/skeleton/Skeleton'
 import { useDispatch } from 'react-redux'
 
 const axios = axiosBase.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://vidtube-ogzw.onrender.com/api/",
 });
 
 function Explore() {

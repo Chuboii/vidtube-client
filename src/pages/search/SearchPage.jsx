@@ -37,7 +37,7 @@ function SearchPage() {
     try {
       // https://vidtube-l48b.onrender.com/
 
-      const data = await axios.get("http://localhost:8080/api/video/search", {
+      const data = await axios.get("https://vidtube-l48b.onrender.com/api/video/search", {
         params: {
           q: searchValue,
         },

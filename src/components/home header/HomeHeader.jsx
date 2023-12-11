@@ -92,7 +92,7 @@ function HomeHeader({ pos }) {
     try {
       dispatch({ type: "SEARCH_ERROR", payload: null })
       dispatch({ type: "GET_SEARCH_DATA", payload: null});
-        const data = await axios.get("http://localhost:8080/api/video/search", {
+        const data = await axios.get("https://vidtube-l48b.onrender.com/api/video/search", {
                     params: {
                       q: searchValue
                   }

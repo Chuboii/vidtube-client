@@ -13,6 +13,7 @@ padding: 1rem;
 z-index:1200;
 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 z-index: 7000;
+
 @media screen and (min-width:768px) {
     display: none;
 }

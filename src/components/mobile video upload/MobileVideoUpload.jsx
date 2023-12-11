@@ -1,4 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+import {
+  useEffect,
+  useState,
+  useRef
+} from "react";
 import {
   Container,
   Icon,
@@ -17,32 +21,48 @@ import {
   Tag,
 } from "./MobileVideoUpload.style";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  useDispatch,
+  useSelector
+} from "react-redux";
 import DarkBg from "../dark bg/DarkBg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate
+} from "react-router-dom";
 
 const axiosBase = axios.create({
   baseURL: "https://vidtube-l48b.onrender.com/api/",
 });
 
-function MobileVideoUpload({ videoFile }) {
-  const [tags, setTags] = useState([]);
-  const [values, setValues] = useState({
-    titleValue: "",
-    descriptionValue: "",
-    tagsValue: "",
-  });
-  const [imageUrl, setImageUrl] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
-  const [valid, setValid] = useState(false);
+function MobileVideoUpload( {
+  videoFile
+}) {
+  const [tags,
+    setTags] = useState([]);
+  const [values,
+    setValues] = useState({
+      titleValue: "",
+      descriptionValue: "",
+      tagsValue: "",
+    });
+  const [imageUrl,
+    setImageUrl] = useState("");
+  const [videoUrl,
+    setVideoUrl] = useState("");
+  const [valid,
+    setValid] = useState(false);
   const tagInputRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isTriggeredVideo, setIsTriggeredVideo] = useState(false);
-  const [isTriggeredImage, setIsTriggeredImage] = useState(false);
-  const [percentImage, setPercentImage] = useState(0);
-  const [percentVideo, setPercentVideo] = useState(0);
+  const [isTriggeredVideo,
+    setIsTriggeredVideo] = useState(false);
+  const [isTriggeredImage,
+    setIsTriggeredImage] = useState(false);
+  const [percentImage,
+    setPercentImage] = useState(0);
+  const [percentVideo,
+    setPercentVideo] = useState(0);
 
   useEffect(() => {
     const tagInput = tagInputRef.current;
@@ -55,7 +75,9 @@ function MobileVideoUpload({ videoFile }) {
 
         if (tagValue !== "") {
           setTags((prev) => [...prev, tagValue]);
-          setValues((prev) => ({ ...prev, tagsValue: "" }));
+          setValues((prev) => ({
+            ...prev, tagsValue: ""
+          }));
         }
       }
     }
@@ -65,7 +87,9 @@ function MobileVideoUpload({ videoFile }) {
     return () => {
       tagInput.removeEventListener("keydown", splitWords);
     };
-  }, [tags, values.tagsValue]);
+  },
+    [tags,
+      values.tagsValue]);
 
   useEffect(() => {
     if (
@@ -79,13 +103,20 @@ function MobileVideoUpload({ videoFile }) {
     } else {
       setValid(false);
     }
-  }, [values.titleValue, tags, values.descriptionValue, valid]);
+  },
+    [values.titleValue,
+      tags,
+      values.descriptionValue,
+      valid]);
 
   const changeValue = (e) => {
     const value = e.target.value;
 
     setValues(() => {
-      return { ...values, [e.target.name]: value };
+      return {
+        ...values,
+        [e.target.name]: value
+      };
     });
   };
 
@@ -96,46 +127,49 @@ function MobileVideoUpload({ videoFile }) {
     });
   };
 
-  const removeVideoComponent = () =>
-    dispatch({ type: "TOGGLE_VIDEO_COMP", payload: false });
+  const removeVideoComponent = () => {
+    dispatch({
+      type: "TOGGLE_MOBILE_VIDEO_UPLOAD",
+      payload: false
+    });
+  }
 
+  useEffect(() => {
+    const uploadAndGetVideoUrl = async () => {
+      try {
+        setIsTriggeredVideo(true);
+        const preset_key = "vidtube files";
+        const cloud_name = "dcgirmxbm";
 
-    useEffect(() => {
-        const uploadAndGetVideoUrl = async () => {
-            try {
-                setIsTriggeredVideo(true);
-                const preset_key = "vidtube files";
-                const cloud_name = "dcgirmxbm";
-    
-                setInterval(() => {
-                  setPercentVideo((prev) => {
-                    if (prev < 99) {
-                      return prev + 1;
-                    } else {
-                      return prev;
-                    }
-                  });
-                }, 30);
-          
-                const videoFormData = new FormData();
-                videoFormData.append("file", videoFile);
-                videoFormData.append("upload_preset", preset_key);
-          
-                const videoLink = await axios.post(
-                  `https://api.cloudinary.com/v1_1/${cloud_name}/video/upload`,
-                  videoFormData
-                );
-          
-                setVideoUrl(videoLink.data.secure_url);
-          
-                setPercentVideo(100);
-              } catch (e) {
-                console.log(e);
-              }
-        }
+        setInterval(() => {
+          setPercentVideo((prev) => {
+            if (prev < 99) {
+              return prev + 1;
+            } else {
+              return prev;
+            }
+          });
+        }, 30);
 
-        uploadAndGetVideoUrl()
- }, [])
+        const videoFormData = new FormData();
+        videoFormData.append("file", videoFile);
+        videoFormData.append("upload_preset", preset_key);
+
+        const videoLink = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloud_name}/video/upload`,
+          videoFormData
+        );
+
+        setVideoUrl(videoLink.data.secure_url);
+
+        setPercentVideo(100);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    uploadAndGetVideoUrl()
+  }, [])
 
   const collectImageFileUrl = async (e) => {
     try {
@@ -191,10 +225,14 @@ function MobileVideoUpload({ videoFile }) {
         );
 
         navigate(`/watch/${res.data._id}/${res.data.userId}`);
-        dispatch({ type: "TOGGLE_VIDEO_COMP", payload: true });
+        dispatch({
+          type: "TOGGLE_VIDEO_COMP", payload: true
+        });
       } else {
         setValid(false);
-        dispatch({ type: "ERROR", payload: "You must insert all values" });
+        dispatch({
+          type: "ERROR", payload: "You must insert all values"
+        });
       }
     } catch (e) {
       console.log(e);
@@ -203,8 +241,8 @@ function MobileVideoUpload({ videoFile }) {
 
   return (
     <>
-      <DarkBg />
-      <Container>
+    <DarkBg />
+    <Container>
         <Icon onClick={removeVideoComponent}>
           <CloseOutlinedIcon />{" "}
         </Icon>
@@ -215,11 +253,11 @@ function MobileVideoUpload({ videoFile }) {
 
           <WrapVideo>
             <Input
-              type="file"
-              d={isTriggeredVideo ? "none" : "block"}
-              accept="video/*"
-            />
-            <Span d={isTriggeredVideo ? "block" : "none"}>
+      type="file"
+      d={isTriggeredVideo ? "none": "block"}
+      accept="video/*"
+      />
+            <Span d={isTriggeredVideo ? "block": "none"}>
               Uploading {percentVideo}%
             </Span>
           </WrapVideo>
@@ -227,67 +265,65 @@ function MobileVideoUpload({ videoFile }) {
 
         <Wrapper>
           <Input
-            name="titleValue"
-            onChange={changeValue}
-            value={values.titleValue}
-            type="text"
-            placeholder="Video title"
-          />
+      name="titleValue"
+      onChange={changeValue}
+      value={values.titleValue}
+      type="text"
+      placeholder="Video title"
+      />
         </Wrapper>
 
         <Wrapper>
           <Textarea
-            name="descriptionValue"
-            onChange={changeValue}
-            value={values.descriptionValue}
-            placeholder="Description"
-          />
+      name="descriptionValue"
+      onChange={changeValue}
+      value={values.descriptionValue}
+      placeholder="Description"
+      />
         </Wrapper>
 
         <Wrapper>
           <Box>
             {tags
-              ? tags.map((el, idx) => (
-                  <Tag key={idx}>
+      ? tags.map((el, idx) => (
+        <Tag key={idx}>
                     {el}{" "}
                     <CloseOutlinedIcon
-                      onClick={() => {
-                        removeTag(idx);
-                      }}
-                      sx={{ fontSize: "15px", marginLeft: ".5rem" }}
-                    />{" "}
+          onClick={() => {
+            removeTag(idx);
+          }}
+          sx={ { fontSize: "15px", marginLeft: ".5rem" }}
+          />{" "}
                   </Tag>
-                ))
-              : ""}
+      )): ""}
           </Box>
           <Textarea
-            ref={tagInputRef}
-            name="tagsValue"
-            onChange={changeValue}
-            className="tag-input"
-            value={values.tagsValue}
-            placeholder="Seperate the tags with commas"
-          />
+      ref={tagInputRef}
+      name="tagsValue"
+      onChange={changeValue}
+      className="tag-input"
+      value={values.tagsValue}
+      placeholder="Seperate the tags with commas"
+      />
         </Wrapper>
 
         <Wrapper>
           <Text>Thumbnail:</Text>
           <WrapImage>
             <InputImage
-              onChange={collectImageFileUrl}
-              d={isTriggeredImage ? "none" : "block"}
-              type="file"
-              accept="image/*"
-            />
-            <SpanImage d={isTriggeredImage ? "block" : "none"}>
+        onChange={collectImageFileUrl}
+        d={isTriggeredImage ? "none": "block"}
+        type="file"
+        accept="image/*"
+        />
+            <SpanImage d={isTriggeredImage ? "block": "none"}>
               Uploading {percentImage}%
             </SpanImage>
           </WrapImage>
         </Wrapper>
 
         <Button onClick={uploadData}>Upload</Button>
-      </Container>
-    </>
+      </Container> < />
   );
 }
 

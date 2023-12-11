@@ -95,24 +95,24 @@ export default function CommentPreview() {
     <>
     {
 
-      allComment && commentPreview ?
+      allComment ?
       <>
       <Comments />
       <Container onClick={enableComment}>
   <Header>
    <Text> Comments </Text>
-   <CommentNo>{allComment && allComment.length > 0 ? allComment.length: 0} </CommentNo>
+   <CommentNo>{allComment.length > 0 ? allComment.length: 0} </CommentNo>
   </Header>
   <Main>
                   <Box>
-                    <Image src={commentPreview.length && commentPreview > 0 ? commentPreview[0].photoURL: ''} />
-                    <Span>{commentPreview.length > 0 && commentPreview ? commentPreview[0].comment: ''} </Span>
+                    <Image src={ commentPreview > 0 ? commentPreview[0].photoURL: ''} />
+                    <Span>{commentPreview.length > 0 ? commentPreview[0].comment: ''} </Span>
                   </Box>
   <KeyboardArrowDownIcon />
   </Main>
-          </Container> < /> :    
-          <>
-          <Comments / >
+          </Container> < /> :
+      <>
+      <Comments />
       <Container onClick={enableComment}>
   <Header>
    <Text> Comments </Text>
@@ -124,8 +124,7 @@ export default function CommentPreview() {
                   </Box>
   <KeyboardArrowDownIcon />
   </Main>
-          </Container>
-          </>
+          </Container> < />
     } < / >
 
   )

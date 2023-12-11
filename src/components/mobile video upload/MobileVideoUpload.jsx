@@ -23,7 +23,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const axiosBase = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://vidtube-l48b.onrender.com/api/",
 });
 
 function MobileVideoUpload({ videoFile }) {

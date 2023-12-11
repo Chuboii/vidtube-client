@@ -38,9 +38,14 @@ import {
   formatDistanceToNow
 } from 'date-fns'
 import {
-  useLocation, useNavigate
+  useLocation,
+  useNavigate
 } from 'react-router-dom';
-
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Comments() {
   const currentUser = useSelector((state) => state.user.currentUser)
   const commentData = useSelector((state) => state.comment.allComments)
@@ -66,7 +71,16 @@ export default function Comments() {
         type: 'TOGGLE_COMMENT_FORM', payload: true
       })
     } else {
-      navigate("/signup")
+      toast.error(' You must be logged in!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
   const disableCommentForm = () => dispatch({
@@ -75,7 +89,7 @@ export default function Comments() {
 
   return(
     <>
-
+    <ToastContainer theme="colored" />
     {
       disableBgTouch && <GlobalStyle overflow={"hidden"} />
     } < Container b = {

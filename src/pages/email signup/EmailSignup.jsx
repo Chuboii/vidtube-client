@@ -101,10 +101,10 @@ function EmailSignup() {
             if (img) {
               setIsLoggedIn(true)
               const user = await axios.post('"https://vidtube-l48b.onrender.com/api/auth/signup', {
-                email: details.email,
-                password: details.password,
-                name: details.name,
-                username: details.username,
+                email: data.email,
+                password: data.password,
+                name: data.name,
+                username: data.username,
                 img: img
               }, {
                 withCredentials: true
@@ -166,7 +166,7 @@ function EmailSignup() {
       }
     }
     catch (e) {
-      setIsLoggedIn
+      setIsLoggedIn(false)
       dispatch({
         type: "ERROR", payload: e
       })

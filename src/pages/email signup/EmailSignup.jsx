@@ -195,7 +195,7 @@ function EmailSignup() {
       avatarData.append("upload_preset", preset_key)
 
       const imageLink = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, avatarData)
-      console.log(imageLink);
+      
       setLoading(false)
       setImg(imageLink.data.secure_url)
     }

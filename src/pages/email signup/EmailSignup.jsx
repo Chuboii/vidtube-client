@@ -166,6 +166,7 @@ function EmailSignup() {
       }
     }
     catch (e) {
+      setIsLoggedIn
       dispatch({
         type: "ERROR", payload: e
       })

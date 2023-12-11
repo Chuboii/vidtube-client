@@ -105,7 +105,7 @@ function EmailSignin() {
     }
     catch (e) {
       dispatch({
-        "ERROR", payload: e
+        type:"ERROR", payload: e
       })
       toast.error('Invalid credentials!', {
         position: "top-right",

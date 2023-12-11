@@ -18,7 +18,7 @@ function ChannelVideos() {
     useEffect(() => {
       const getData = async () => {
         try {
-          const data = await axios.get("http://localhost:8080/api/video/channel", {
+          const data = await axios.get("https://vidtube-l48b.onrender.com/api/video/channel", {
             withCredentials: true
           })
   

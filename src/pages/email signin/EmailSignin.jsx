@@ -31,7 +31,7 @@ function EmailSignin() {
   
   const submitForm = async () => {
     try {
-      const user = await axios.post('http://localhost:8080/api/auth/signin', {
+      const user = await axios.post('https://vidtube-l48b.onrender.com/api/auth/signin', {
         email: details.email,
         passkey: details.passkey
       }, {

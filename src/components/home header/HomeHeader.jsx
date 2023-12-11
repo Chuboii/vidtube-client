@@ -44,24 +44,6 @@ function HomeHeader({ pos }) {
   const toggleVideoCompp = useSelector((state) => state.toggle.toggleVideo)
   const searchValue = useSelector((state) => state.search.searchValue)
 
-  useEffect(() => {
-  
-  //   const cookie = document.cookie.split(' ')[4].split("=")[0]
-
-
-  //   async function checkCookie() {
-  //     if (cookie === 'access_token') {
-  //       console.log(true)
-  //       dispatch({type:"GET_USER_DATA", payload:currentUser})
-  //     }
-  //     else {
-  //       console.log(false)
-  //       dispatch({type:"GET_USER_DATA", payload:null})
-  //     }
-  // }
-  // checkCookie()
-  }, [currentUser, dispatch])
-
 
   const enableToggle = () => {
     dispatch({type:"TOGGLE_MOBILE_MENU", payload:!toggleMenu})

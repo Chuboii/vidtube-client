@@ -17,7 +17,7 @@ function Notification() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const data = await axios.get(`http://localhost:8080/api/notification`, {
+                const data = await axios.get(`https://vidtube-l48b.onrender.com/api/notification`, {
                     withCredentials: true
                 })
 

@@ -42,7 +42,7 @@ export default function Menu() {
 
   const initiateLogout = async () => {
     try {
-     const res = await axios.post("http://localhost:8080/api/auth/logout", { withCredentials: true })
+     const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
       const cookieName = 'access_token'
       
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

@@ -35,7 +35,7 @@ export default function FooterMobile(){
     </Box>
     
         <Box>
-    <ControlPointIcon onClick={()=> dispatch({type:"TOGGLE_MOBILE_VIDEO_COMP", toggle:true})} sx={{fontSize:"40px"}}/>
+    <ControlPointIcon onClick={()=> dispatch({type:"TOGGLE_MOBILE_VIDEO_COMP", payload:true})} sx={{fontSize:"40px"}}/>
     </Box>
     
         <Box onClick={() => navigate("/subscriptions") } >

@@ -18,7 +18,6 @@ function Explore() {
   useEffect(() => {
     dispatch({ type: "GET_SEARCH_VALUE", payload: "" })
     
-    // https://vidtube-l48b.onrender.com
     const getData = async () => {
       try {
         const res = await axios.get("https://vidtube-l48b.onrender.com/api/video/random")
@@ -28,7 +27,7 @@ function Explore() {
 
       }
       catch (e) {
-      
+     
         if (e.response.data.status === 500) {
           navigate("/server-error")
        }

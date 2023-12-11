@@ -14,9 +14,8 @@ function TagVideoPage() {
     const [videoData, setVideoData] = useState(null)
     const pathId = location.pathname.split("/")[2]
     const errorNotFound = useSelector((state) => state.video.error)
-    const navigate = useNavigate()
+   const navigate = useNavigate()
 
-    
 
     useEffect(() => {
         const getData = async () => {

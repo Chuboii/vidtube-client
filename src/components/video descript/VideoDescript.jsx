@@ -34,7 +34,7 @@ function VideoDescript() {
     
         const getData = async () => {
             try {
-                const userData = await axios.get(`http://localhost:8080/api/user/find/${pathId}`)
+                const userData = await axios.get(`https://vidtube-l48b.onrender.com/api/user/find/${pathId}`)
                 
                 dispatch({ type: "OTHER_USER_DATA", payload: userData.data })
     
@@ -57,7 +57,7 @@ function VideoDescript() {
         const getSubscribedData = async () => {
             try {
                 if (currentUser) {
-                    const data = await axios.get(`http://localhost:8080/api/user/find/${currentUser._id}`, {
+                    const data = await axios.get(`https://vidtube-l48b.onrender.com/api/user/find/${currentUser._id}`, {
                         withCredentials: true
                     })
        
@@ -82,7 +82,7 @@ function VideoDescript() {
         const getIsLikedData = async () => {
             try {
                 if (currentUser) {
-                    const data = await axios.get(`http://localhost:8080/api/video/find/${videoId}`, {
+                    const data = await axios.get(`https://vidtube-l48b.onrender.com/api/video/find/${videoId}`, {
                         withCredentials: true
                     })
                 
@@ -112,7 +112,7 @@ function VideoDescript() {
         try {
 
             if (currentUser) {
-                const data = await axios.get(`http://localhost:8080/api/user/find/${currentUser._id}`, {
+                const data = await axios.get(`https://vidtube-l48b.onrender.com/api/user/find/${currentUser._id}`, {
                     withCredentials: true
                 })
             
@@ -120,7 +120,7 @@ function VideoDescript() {
 
                 if (duplicate) {
                     setIsSubscribed(false)
-                    const newData = await axios.put(`http://localhost:8080/api/user/decresub/${pathId}`, {
+                    const newData = await axios.put(`https://vidtube-l48b.onrender.com/api/user/decresub/${pathId}`, {
                         body: ""
                     },
                         {
@@ -131,7 +131,7 @@ function VideoDescript() {
                 }
                 else {
                     setIsSubscribed(true)
-                    const newData = await axios.put(`http://localhost:8080/api/user/incresub/${pathId}`, {
+                    const newData = await axios.put(`https://vidtube-l48b.onrender.com/api/user/incresub/${pathId}`, {
                         name: "hey"
                     },
                         {
@@ -142,7 +142,7 @@ function VideoDescript() {
                     dispatch({ type: "OTHER_USER_DATA", payload: newData.data })
                     
                 
-                    const res = await axios.post("http://localhost:8080/api/notification", {
+                    const res = await axios.post("https://vidtube-l48b.onrender.com/api/notification", {
                         userId: userInfo._id,
                         name: newData.data.name,
                         photoUrl: newData.data.img,
@@ -167,7 +167,7 @@ function VideoDescript() {
     const incrementLikes = async () => {
         try {
             if (currentUser) {
-                const data = await axios.get(`http://localhost:8080/api/video/find/${videoId}`, {
+                const data = await axios.get(`https://vidtube-l48b.onrender.com/api/video/find/${videoId}`, {
                     withCredentials: true
                 })
             
@@ -175,7 +175,7 @@ function VideoDescript() {
            
                 if (duplicate) {
                     setIsLiked(false)
-                    const newData = await axios.put(`http://localhost:8080/api/video/delike/${videoId}`, {
+                    const newData = await axios.put(`https://vidtube-l48b.onrender.com/api/video/delike/${videoId}`, {
                         body: ""
                     },
                         {
@@ -186,7 +186,7 @@ function VideoDescript() {
                 }
                 else {
                     setIsLiked(true)
-                    const newData = await axios.put(`http://localhost:8080/api/video/like/${videoId}`, {
+                    const newData = await axios.put(`https://vidtube-l48b.onrender.com/api/video/like/${videoId}`, {
                         body: ""
                     },
                         {
@@ -195,7 +195,7 @@ function VideoDescript() {
                     )
                     dispatch({ type: "GET_VIDEO_DATA", payload: newData.data })
                    
-                    const res = await axios.post("http://localhost:8080/api/notification", {
+                    const res = await axios.post("https://vidtube-l48b.onrender.com/api/notification", {
                         userId: userInfo._id,
                         name: newData.data.name,
                         photoUrl: newData.data.img,

@@ -5,12 +5,16 @@ color:white;
 background:rgba(0,0,0,.97);
 position:fixed;
 bottom:${({display})=> display};
-z-index:3;
+z-index:3000;
 width:100%;
 padding:1.5rem;
 transition:all .5s;
 border-top-left-radius:30px;
 border-top-right-radius:30px;
+
+@media screen and (min-width: 768px) {
+   display:none;
+}
 `
 
 export const Header = styled.div`

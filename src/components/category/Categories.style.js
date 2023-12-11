@@ -29,11 +29,11 @@ export const Tag = styled.a`
    align-items:center;
    text-decoration: none;
    justify-content:center;
-   font-size:13px;
+   font-size:15px;
    text-align:center;
    box-sizing:border-box;
    border-radius:7px;
-   padding:.2rem .5rem;
+   padding:.5rem .5rem;
    &:hover{
       color: red;
    }

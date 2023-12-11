@@ -40,7 +40,12 @@ function VideoDescript() {
     
             }
             catch (e) {
-              dispatch({ type: "ERROR", payload: e})  
+                dispatch({ type: "ERROR", payload: e })  
+                
+                
+        //   if (e.response.data.status === 500) {
+        //     navigate("/server-error")
+        //  }
             }
         }    
         getData()
@@ -135,6 +140,18 @@ function VideoDescript() {
                     )
 
                     dispatch({ type: "OTHER_USER_DATA", payload: newData.data })
+                    
+                
+                    const res = await axios.post("http://localhost:8080/api/notification", {
+                        userId: userInfo._id,
+                        name: newData.data.name,
+                        photoUrl: newData.data.img,
+                        desc: "just subscribed to your channel",
+                  }, {
+                        withCredentials:true
+                    })
+
+                    console.log(res)
                 }
             }
             else {
@@ -177,6 +194,20 @@ function VideoDescript() {
                         }
                     )
                     dispatch({ type: "GET_VIDEO_DATA", payload: newData.data })
+                   
+                    const res = await axios.post("http://localhost:8080/api/notification", {
+                        userId: userInfo._id,
+                        name: newData.data.name,
+                        photoUrl: newData.data.img,
+                        desc: "just liked your video",
+                        thumbnail: videoInfo ? videoInfo.thumbnail : '',
+                        videoName: videoInfo ? videoInfo.title : ''
+                    }, {
+                        withCredentials:true
+                    })
+
+                    console.log(res)
+
                 }
             }
             else {

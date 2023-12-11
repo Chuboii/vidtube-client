@@ -37,6 +37,7 @@ export const ImageBox = styled.div`
 width: 100%;
 position: relative;
 height: 250px;
+padding:0 .5rem;  
    @media screen and (min-width:700px){
     padding:0 1rem;    
     

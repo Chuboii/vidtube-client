@@ -5,7 +5,10 @@ const INITIAL_STATE = {
     disableBg: false,
     toggleVideo: false,
     toggleCommentForm: false,
-    toggleCommentComp:false
+    toggleMobileVideoUpload:false,
+    toggleCommentComp: false,
+    toggleMobileVideoComp: false,
+    toggleMobileAnimatiom:"500px"
 }
 
 
@@ -48,6 +51,21 @@ export const toggleReducer = (state = INITIAL_STATE, action) =>{
                 return {
                     ...state, 
                     toggleVideo: payload
+            }
+        case "TOGGLE_MOBILE_VIDEO_UPLOAD":
+                return {
+                    ...state, 
+                    toggleMobileVideoUpload: payload
+            }
+        case "TOGGLE_MOBILE_VIDEO_COMP":
+            return {
+                ...state,
+                 toggleMobileVideoComp: payload
+            }
+        case "TOGGLE_MOBILE_VIDEO_ANIMATION":
+                return {
+                    ...state,
+                    toggleMobileAnimatiom: payload
                 }
         default:
             return state

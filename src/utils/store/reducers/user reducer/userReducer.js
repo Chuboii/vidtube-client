@@ -3,8 +3,8 @@ const INITIAL_STATE = {
     otherUser: null,
     loading: false,
     error: null
-}
-
+} 
+  
 export const userReducer = (state = INITIAL_STATE, action) =>{
     const { type, payload } = action
     

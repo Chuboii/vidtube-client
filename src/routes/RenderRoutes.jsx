@@ -19,6 +19,7 @@ import ChannelHome from "../pages/channel home/ChannelHome"
 import ChannelLinkHolder from "../components/channel link holder/ChannelLinkHolder.jsx"
 import ChannelVideos from "../components/channel videos/ChannelVideos.jsx"
 import ManageVideos from "../pages/manage videos/ManageVideos.jsx"
+import ErrorPage from "../pages/error page/ErrorPage.jsx"
 
 function RenderRoutes() {
   const { pos } = useContext(ScrollContext)
@@ -27,6 +28,7 @@ function RenderRoutes() {
     return (
         <>
         <Routes>
+          <Route path="/server-error" element={<ErrorPage/>}/>
           <Route path="/signup" element={<AuthSignup />} />
           <Route path="/signup/email" element={<EmailSignup />} />
           <Route path="/signin/email" element={<EmailSignin />} />

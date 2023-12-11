@@ -21,13 +21,13 @@ export default function CommentForm() {
     e.preventDefault()
     try {
       if (value) {
-        const data = await axios.post(`http://localhost:8080/api/comment/${videoId}/new`, {
+        const data = await axios.post(`https://vidtube-l48b.onrender.com/api/comment/${videoId}/new`, {
           comment: value
         },
           {
             withCredentials: true
           })
-        const allComment = await axios.get(`http://localhost:8080/api/comment/find/${videoId}`)
+        const allComment = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`)
         
         dispatch({type:'GET_ALL_COMMENT', payload:allComment.data})
       }

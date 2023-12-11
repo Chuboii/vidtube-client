@@ -16,17 +16,22 @@ function Explore() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch({type:"GET_SEARCH_VALUE", payload:""})
+    dispatch({ type: "GET_SEARCH_VALUE", payload: "" })
+    
+    // https://vidtube-l48b.onrender.com
     const getData = async () => {
       try {
-        const res = await axios.get("https://vidtube-l48b.onrender.com/api/video/random")
+        const res = await axios.get("http://localhost:8080/api/video/random")
         const data = res.data
 
         setVideos(data)
 
       }
       catch (e) {
-        console.log(e)
+      
+        if (e.response.data.status === 500) {
+          navigate("/server-error")
+       }
       }
     }
     getData()

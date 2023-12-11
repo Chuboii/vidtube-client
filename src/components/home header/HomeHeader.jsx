@@ -71,7 +71,7 @@ function HomeHeader({ pos }) {
 
   const toggleNavbar = () => dispatch({ type: "TOGGLE_NAVBAR", payload: true });
 
-  const toggleNotifications = () =>  dispatch({ type: "TOGGLE_NOTIFICAION", payload: !toggleNotification });
+  const toggleNotifications = () =>  dispatch({ type: "TOGGLE_NOTIFICAION", payload: true });
   
   const toggleVideoCompBtn = () => {
     if (currentUser) {
@@ -88,8 +88,10 @@ function HomeHeader({ pos }) {
 
 
   const submitFormData = async (e) => {
-    dispatch({type:'GET_SEARCH_DATA', payload:null})
-          try {
+
+    try {
+      dispatch({ type: "SEARCH_ERROR", payload: null })
+      dispatch({ type: "GET_SEARCH_DATA", payload: null});
         const data = await axios.get("http://localhost:8080/api/video/search", {
                     params: {
                       q: searchValue
@@ -98,7 +100,7 @@ function HomeHeader({ pos }) {
                  dispatch({type:'GET_SEARCH_DATA', payload:data.data})
             }
             catch (e) {
-              dispatch({type:'ERROR', payload:e.response.data.message})
+              dispatch({type:'SEARCH_ERROR', payload:e.response.data.message})
             }
   }
   return (

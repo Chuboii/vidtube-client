@@ -8,36 +8,20 @@ import Upload from "../mobile form upload/Upload"
 import {useReducer} from "react"
 import CropUpload from "../crop upload/CropUpload"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
-const INITIAL_STATE = {
-  toggle: false,
-  animation: "-500px"
-}
-
-const reducer = (state, action) =>{
-  const {type} = action
-
-  switch(type){
-    case "TOGGLE":
-      return {...state, toggle: action.toggle}
-    case "ANIMATE":
-      return {...state, animation: "0"}
-    default:
-      return state
-  }
-}
 
 
 export default function FooterMobile(){
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   
 
   return(
     <>
-<Upload invoke={dispatch} animate={state}/> 
+<Upload/> 
 {/*<CropUpload/>*/}
     <Footer>
     <Box onClick={() => navigate("/") } > 
@@ -51,7 +35,7 @@ export default function FooterMobile(){
     </Box>
     
         <Box>
-    <ControlPointIcon onClick={()=> dispatch({type:"TOGGLE", toggle:true})} sx={{fontSize:"40px"}}/>
+    <ControlPointIcon onClick={()=> dispatch({type:"TOGGLE_MOBILE_VIDEO_COMP", toggle:true})} sx={{fontSize:"40px"}}/>
     </Box>
     
         <Box onClick={() => navigate("/subscriptions") } >

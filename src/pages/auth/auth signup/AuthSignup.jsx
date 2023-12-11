@@ -13,11 +13,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWitGoogle } from "../../../utils/firebase/firebase";
-import axiosBase from "axios";
+import axios from "axios";
 
-const axios = axiosBase.create({
-  baseURL: "http://localhost:8080/api/",
-});
+
 
 function Auth() {
   const navigate = useNavigate();
@@ -28,7 +26,7 @@ function Auth() {
     try {
       const { user } = await signInWitGoogle();
 
-      const res = await axios.post("auth/google", {
+      const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/google", {
         name: user.displayName,
         email: user.email,
         img: user.photoURL,

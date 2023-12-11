@@ -34,7 +34,7 @@ function EmailSignup() {
         try {
              
             console.log(img, details.email, details.password, details.username, details.name)
-            const user = await axios.post('http://localhost:8080/api/auth/signup', {
+            const user = await axios.post('"https://vidtube-l48b.onrender.com/api/auth/signup', {
                 email: details.email,
                 password: details.password,
                 name: details.name,

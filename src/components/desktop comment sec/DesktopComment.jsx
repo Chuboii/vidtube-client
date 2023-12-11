@@ -14,19 +14,6 @@ function DesktopComment() {
     const [value, setValue] = useState("")
     const videoId = location.pathname.split("/")[2]
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         try {
-    //             const data = 
-    //         }
-    //         catch (e) {
-                
-    //         }
-    //     }
-
-    //     getData()
-    // }, [])
-    
     const changeValue = (e) => {
         setValue(e.target.value)
     }
@@ -36,13 +23,13 @@ function DesktopComment() {
         e.preventDefault()
         try {
             if (value) {
-                  await axios.post(`http://localhost:8080/api/comment/${videoId}/new`, {
+                  await axios.post(`https://vidtube-l48b.onrender.com/api/comment/${videoId}/new`, {
                     comment: value
                 },
                     {
                         withCredentials: true
                     })
-                const allComment = await axios.get(`http://localhost:8080/api/comment/find/${videoId}`)
+                const allComment = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`)
             
                 dispatch({ type: 'GET_ALL_COMMENT', payload: allComment.data })
             }

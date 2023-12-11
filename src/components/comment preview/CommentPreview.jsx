@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import CommentForm from '../comment form/CommentForm';
+import DesktopComment from '../desktop comment sec/DesktopComment';
 
 export default function CommentPreview(){
   const dispatch = useDispatch()
@@ -16,7 +17,7 @@ export default function CommentPreview(){
   const commentPreview = useSelector((state) => state.comment.previewComment)  
   const allComment = useSelector((state) => state.comment.allComments)
 
-
+  // https://vidtube-l48b.onrender.com
   useEffect(() => {
 
     const getData = async () => {
@@ -62,35 +63,28 @@ export default function CommentPreview(){
   // const isAavailable = commentPreview.length > 0 ? commentPreview[0].photoURL : ''
   
   return (
-    allComment ? 
     <>
-      {
-        allComment.length > 0 ?
       
-        <>
       <Comments/>
 <Container onClick={enableComment}>
   <Header>
    <Text> Comments </Text>
-   <CommentNo>{allComment.length} </CommentNo>
+   <CommentNo>{allComment ? allComment.length : 0} </CommentNo>
   </Header>
   
   <Main>
-                {commentPreview ? 
+               
                   <Box>
-                    <Image src={commentPreview.length > 0 ? commentPreview[0].photoURL : ''} />
-                    <Span>{commentPreview.length > 0 ? commentPreview[0].comment : ''} </Span>
+                    <Image src={commentPreview.length && commentPreview> 0 ? commentPreview[0].photoURL : ''} />
+                    <Span>{commentPreview.length > 0 && commentPreview ? commentPreview[0].comment : ''} </Span>
                 
                   </Box>
-                : ''}
+             
   <KeyboardArrowDownIcon/>
   </Main>
           </Container>
                 
-        </>
-                
-    : '' }
       </>
-      : ""
+      
     )
 }

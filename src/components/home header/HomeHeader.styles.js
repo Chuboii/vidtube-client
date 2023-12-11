@@ -100,7 +100,8 @@ export const SigninBtn = styled.div`
            opacity: .5;
         }
         @media screen and (max-width:700px) {
-          width: 100px;
+          width: 115px;
+          justify-content: center;
         }
     
 

@@ -4,13 +4,19 @@ import ThumbnailContainer from "../../components/thumbnail container/ThumbnailCo
 import Thumbnail from "../../components/thumbnails/Thumbnail"
 import { useEffect } from "react"
 import axios from "axios"
+import {NotFound} from './Subsciption.style'
 import SkeletonLoading from "../../components/skeleton/Skeleton"
-
+import ErrorPage from "../error page/ErrorPage"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Subsciption() {
   const dispatch = useDispatch()
   const subscription = useSelector((state) => state.video.subscriptionVideo)
+  const error = useSelector((state) => state.video.subscriptionError)
+  const navigate = useNavigate()
 
+  // https://vidtube-l48b.onrender.com/
 
   useEffect(() => {
     const getData = async () => {
@@ -30,7 +36,12 @@ function Subsciption() {
         }
       }
       catch (e) {
-        dispatch({type:"SUBSCRIPTION_ERROR", payload:e.response.data})
+          dispatch({ type: "SUBSCRIPTION_ERROR", payload: e.response })
+      
+
+        if (e.response.data.status === 500) {
+           navigate("/server-error")
+        }
       }
     }
 
@@ -40,11 +51,11 @@ function Subsciption() {
 
   return (
     <>
-     
-          <ThumbnailContainer>
+  
+      <ThumbnailContainer>
         {subscription ? subscription.map(subscription => (
           <Thumbnail key={subscription.id} video={subscription} />
-       )): <SkeletonLoading/> }
+       )): error ? <NotFound> Subscribe to other users channels to see their videos 😋 </NotFound>: <SkeletonLoading/> }
       </ThumbnailContainer>     
 
     <FooterMobile/>  

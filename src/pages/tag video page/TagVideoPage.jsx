@@ -3,7 +3,7 @@ import ThumbnailContainer from '../../components/thumbnail container/ThumbnailCo
 import Thumbnail from '../../components/thumbnails/Thumbnail'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Categories from '../../components/category/Categories'
 import FooterMobile from '../../components/footer mobile/FooterMobile'
 import SkeletonLoading from '../../components/skeleton/Skeleton'
@@ -14,13 +14,14 @@ function TagVideoPage() {
     const [videoData, setVideoData] = useState(null)
     const pathId = location.pathname.split("/")[2]
     const errorNotFound = useSelector((state) => state.video.error)
-   
+    const navigate = useNavigate()
 
+    
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const videoData = await axios.get(`http://localhost:8080/api/video/category/${pathId}`, {
+                const videoData = await axios.get(`https://vidtube-l48b.onrender.com/api/video/category/${pathId}`, {
                   withCredentials:true
                 })
                 setVideoData(videoData.data)
@@ -30,6 +31,10 @@ function TagVideoPage() {
                 if (errorNotFound === 'video not found') {
                     dispatch({type:"GET_VIDEO_DATA", payload: null})
                 }
+                
+        if (e.response.data.status === 500) {
+            navigate("/server-error")
+         }
             }
         }
         getData()

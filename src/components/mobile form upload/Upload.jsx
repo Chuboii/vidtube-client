@@ -7,14 +7,15 @@ import MobileVideoUpload from "../mobile video upload/MobileVideoUpload";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function Upload({ animate, invoke }) {
-  const toggleVideoComp = useSelector((state) => state.toggle.toggleVideo)
+export default function Upload() {
+  const toggleVideoComp = useSelector((state) => state.toggle.toggleMobileVideoUpload)
   const dispatch = useDispatch()
+  const toggleMobileComp = useSelector((state) => state.toggle.toggleMobileVideoComp)
   const [videoFile, setVideoFile] = useState('')
 
   const toggler = () => {
-    invoke({ type: "TOGGLE", toggle: false });
-    invoke({ type: "ANIMATE" });
+    dispatch({ type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false })
+    dispatch({type:"DISABLE_BG", payload:false})
   };
 
 
@@ -27,7 +28,7 @@ export default function Upload({ animate, invoke }) {
     <>
       {toggleVideoComp && <MobileVideoUpload videoFile={videoFile } />}
       
-      <Container display={animate.toggle ? "0" : "-500px"}>
+      <Container display={toggleMobileComp ? "0" : "-500px"}>
         <Header>
           <H4> Create </H4>
           <CloseIcon onClick={toggler} />

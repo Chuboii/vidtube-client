@@ -9,4 +9,8 @@ export const Bg = styled.div`
    right:0;
    z-index:1200;
    height:100dvh;
+
+   @media screen and (max-width:768px){
+      display:none;
+   }
 `

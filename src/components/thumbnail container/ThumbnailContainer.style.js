@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     overflow-x: hidden;
     display: grid;
-    margin-top:5rem ;
+    margin-top:2rem ;
    color: white;
 @media screen and (max-width:700px){
     grid-template-columns: 1fr; 

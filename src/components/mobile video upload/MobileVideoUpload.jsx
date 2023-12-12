@@ -73,13 +73,13 @@ function MobileVideoUpload( {
   
   useEffect(() => {
     const tagInput = tagInputRef.current;
-
+  
     function splitWords(e) {
-      if (e.key === ",") {
+      if (e.key === "," && e.code !== "Comma") {
         e.preventDefault();
-
+  
         const tagValue = values.tagsValue.trim();
-
+  
         if (tagValue !== "") {
           setTags((prev) => [...prev, tagValue]);
           setValues((prev) => ({
@@ -88,15 +88,14 @@ function MobileVideoUpload( {
         }
       }
     }
-
-    tagInput.addEventListener("keypress", splitWords);
-
+  
+    tagInput.addEventListener("keydown", splitWords);
+  
     return () => {
-      tagInput.removeEventListener("keypress", splitWords);
+      tagInput.removeEventListener("keydown", splitWords);
     };
-  },
-    [tags,
-      values.tagsValue]);
+  }, [tags, values.tagsValue]);
+  
 
   useEffect(() => {
     if (

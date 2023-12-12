@@ -149,6 +149,19 @@ function EmailSignin() {
         theme: "colored",
       });
     }
+      
+    if (e.response.status === 502 ) {
+      toast.error('Bad gateaway! Try again', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    
 
     }
   }

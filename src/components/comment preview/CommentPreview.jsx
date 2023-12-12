@@ -95,7 +95,8 @@ export default function CommentPreview() {
     <>
     {
 
-      allComment ?
+        allComment && allComment.length > 0 ?
+
       <>
       <Comments />
       <Container onClick={enableComment}>

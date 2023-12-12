@@ -70,31 +70,30 @@ function MobileVideoUpload( {
   const [percentVideo,
     setPercentVideo] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+
   
   useEffect(() => {
     const tagInput = tagInputRef.current;
   
-    function splitWords(e) {
-      if (e.key === "," && e.code !== "Comma") {
+    function handleInputChange(e) {
+      const tagValue = e.target.value.trim();
+  
+      if (tagValue.endsWith(",")) {
         e.preventDefault();
   
-        const tagValue = values.tagsValue.trim();
-  
-        if (tagValue !== "") {
-          setTags((prev) => [...prev, tagValue]);
-          setValues((prev) => ({
-            ...prev, tagsValue: ""
-          }));
+        if (tagValue.length > 1) {
+          setTags((prev) => [...prev, tagValue.slice(0, -1)]);
+          tagInput.value = ""; // Clear the input field
         }
       }
     }
   
-    tagInput.addEventListener("keydown", splitWords);
+    tagInput.addEventListener("input", handleInputChange);
   
     return () => {
-      tagInput.removeEventListener("keydown", splitWords);
+      tagInput.removeEventListener("input", handleInputChange);
     };
-  }, [tags, values.tagsValue]);
+  }, [tags]);
   
 
   useEffect(() => {

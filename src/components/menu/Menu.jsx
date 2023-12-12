@@ -42,11 +42,10 @@ export default function Menu() {
 // https://vidtube-l48b.onrender.com
   const initiateLogout = async () => {
     try {
-     const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
-      const cookieName = 'access_token'
+      const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
       
-      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-
+      sessionStorage.setItem("access_token", null)
+      
       dispatch({ type: "GET_USER_DATA", payload: null })
       dispatch({type:"TOGGLE_MOBILE_MENU", payload:false})
     }

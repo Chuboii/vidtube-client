@@ -1,38 +1,25 @@
 import { createContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
+import {useState} from 'react'
 export const UserContext = createContext()
 
-
+const isUserLoggedIn = () => {
+  const storage = sessionStorage.getItem("access_token")
+  return storage ? storage : null
+}
 export const UserProvider = ({ children }) => {
     const dispatch = useDispatch()
-
+  const [isLoggedIn, setIsLoggedIn] = useState(isUserLoggedIn)
+  
     useEffect(() => {
-        function isUserLoggedIn() {
-            var loggedInCookieName = 'access_token';
-            var allCookies = document.cookie;
-            var cookiesArray = allCookies.split(';');
-          
-            for (var i = 0; i < cookiesArray.length; i++) {
-              var cookie = cookiesArray[i].trim();
-          
-              if (cookie.indexOf(loggedInCookieName + '=') === 0) {
-                return true; // User is logged in
-              }
-            }
-          
-            return false; // User is logged out
-          }
-          
-          if (!isUserLoggedIn()) {
-              dispatch({ type: "GET_USER_DATA", payload: null})
-          }
+      if (!isLoggedIn) return dispatch({type:"GET_USER_DATA", payload:null})
+      
     })
 
 
     return (
         
-        <UserContext.Provider>
+        <UserContext.Provider value={setIsLoggedIn}>
             {children}
         </UserContext.Provider>
     )

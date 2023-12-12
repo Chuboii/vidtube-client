@@ -32,6 +32,7 @@ function AuthSignin() {
           }, {
             withCredentials:true
           });
+          sessionStorage.setItem("access_token", res.data._id)
     
           dispatch({ type: "GET_USER_DATA", payload: res.data });
           dispatch({ type: "LOADING", payload: false });

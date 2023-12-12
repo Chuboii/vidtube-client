@@ -45,7 +45,7 @@ export default function Menu() {
       const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
       
       sessionStorage.setItem("access_token", null)
-      
+
       dispatch({ type: "GET_USER_DATA", payload: null })
       dispatch({type:"TOGGLE_MOBILE_MENU", payload:false})
     }
@@ -61,7 +61,11 @@ export default function Menu() {
         name: user.displayName,
         email: user.email,
         img: user.photoURL
+      }, {
+        withCredentials:true
       })
+      sessionStorage.setItem("access_token", currUser.data._id)
+      
       dispatch({ type: "GET_USER_DATA", payload: currUser.data })
       dispatch({type:"TOGGLE_MOBILE_MENU", payload:false})
     }

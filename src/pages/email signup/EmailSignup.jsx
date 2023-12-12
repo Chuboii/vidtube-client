@@ -109,6 +109,8 @@ function EmailSignup() {
               }, {
                 withCredentials: true
               })
+              
+              sessionStorage.setItem("access_token", user.data._id)
 
               dispatch({
                 type: "GET_USER_DATA", payload: user.data

@@ -89,10 +89,10 @@ function MobileVideoUpload( {
       }
     }
 
-    tagInput.addEventListener("keydown", splitWords);
+    tagInput.addEventListener("keypress", splitWords);
 
     return () => {
-      tagInput.removeEventListener("keydown", splitWords);
+      tagInput.removeEventListener("keypress", splitWords);
     };
   },
     [tags,

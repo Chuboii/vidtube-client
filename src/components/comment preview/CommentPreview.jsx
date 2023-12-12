@@ -105,12 +105,13 @@ export default function CommentPreview() {
   </Header>
   <Main>
                   <Box>
-                    <Image src={ commentPreview > 0 ? commentPreview[0].photoURL: ''} />
+                    <Image src={ commentPreview.length > 0 ? commentPreview[0].photoURL: ''} />
                     <Span>{commentPreview.length > 0 ? commentPreview[0].comment: ''} </Span>
                   </Box>
   <KeyboardArrowDownIcon />
   </Main>
-          </Container> < /> :
+            </Container>
+          </> :
       <>
       <Comments />
       <Container onClick={enableComment}>
@@ -124,8 +125,10 @@ export default function CommentPreview() {
                   </Box>
   <KeyboardArrowDownIcon />
   </Main>
-          </Container> < />
-    } < / >
+              </Container>
+            </>
+    }
+          </>
 
   )
 }

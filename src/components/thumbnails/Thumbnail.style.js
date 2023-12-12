@@ -83,7 +83,7 @@ export const Title = styled.div`
    font-weight:500;
 
    @media screen and (min-width:700px){
- width:300px;
+ width:340px;
  font-size:15px;
  line-height:19px;
  word-wrap: break-word;

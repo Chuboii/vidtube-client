@@ -61,8 +61,7 @@ function HomeHeader( {
   const currentUser = useSelector((state) => state.user.currentUser)
   const toggleVideoCompp = useSelector((state) => state.toggle.toggleVideo)
   const searchValue = useSelector((state) => state.search.searchValue)
-  const [isOnline,
-    setIsOnline] = useState(false)
+  const [isOnline, setIsOnline] = useState(false)
 
   const enableToggle = () => {
     dispatch({
@@ -101,7 +100,16 @@ function HomeHeader( {
         type: "TOGGLE_VIDEO_COMP", payload: true
       });
     } else {
-      navigate("/signup");
+      toast.error('You must be logged in!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      }); 
     }
   }
 
@@ -207,7 +215,8 @@ Sign in
           </ThirdPart>
         </Container>
   </Header>
-  <Outlet /> < />
+      <Outlet />
+    </>
 );
 }
 

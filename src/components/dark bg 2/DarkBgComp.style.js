@@ -7,6 +7,6 @@ export const Bg = styled.div`
    bottom:0;
    background:rgba(0,0,0,.6);
    right:0;
-   z-index:1200;
+   z-index:12000;
    height:100dvh;
 `

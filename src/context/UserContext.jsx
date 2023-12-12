@@ -11,9 +11,16 @@ export const UserProvider = ({ children }) => {
     const dispatch = useDispatch()
   const [isLoggedIn, setIsLoggedIn] = useState(isUserLoggedIn)
   
-    useEffect(() => {
-      if (!isLoggedIn) return dispatch({type:"GET_USER_DATA", payload:null})
-      
+  useEffect(() => {
+    const d = () => {
+      if (isLoggedIn) {
+        //
+      }
+      else {
+        return dispatch({ type: "GET_USER_DATA", payload: null })
+      }
+    }
+    d()
     })
 
 

@@ -76,7 +76,7 @@ function EmailSignin() {
     try {
       if (data.email && data.passkey) {
         setIsLoggedIn(true)
-        const user = await axios.post('https://vidtube-l48b.onrender.com/api/auth/signin', {
+        const user = await axios.post('http://localhost:8080/api/auth/signin', {
           email: data.email,
           passkey: data.passkey
         }, {
@@ -100,7 +100,7 @@ function EmailSignin() {
           theme: "colored",
         })
 
-        setTimeout(()=> {
+        setTimeout(() => {
           navigate("/")
         }, 2000)
       }
@@ -108,7 +108,7 @@ function EmailSignin() {
     catch (e) {
       setIsLoggedIn(false)
       dispatch({
-        type:"ERROR", payload: e
+        type: "ERROR", payload: e
       })
       console.log(e.response)
       if (e.response.data.message === "User does not have an account") {
@@ -124,45 +124,46 @@ function EmailSignin() {
         });
       }
 
-    if (e.response.data.message === "Invalid credentials") {
-      toast.error('Incorrect Password!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
+      if (e.response.data.message === "Invalid credentials") {
+        toast.error('Incorrect Password!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
       
-    if (e.response.status === 500 ) {
-      toast.error('Server error!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
+      if (e.response.status === 500) {
+        toast.error('Server error!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
       
-    if (e.response.status === 502 ) {
-      toast.error('Bad gateaway! Try again', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      if (e.response.status === 502) {
+        toast.error('Bad gateaway! Try again', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
     
 
+      }
     }
   }
 

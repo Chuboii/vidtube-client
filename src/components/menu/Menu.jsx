@@ -51,7 +51,7 @@ export default function Menu() {
   const initiateLogout = async () => {
     try {
       setIsLoaded(true)
-      const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
+      const res = await axios.post("http://localhost:8080/api/auth/logout", { withCredentials: true })
        setIsLoaded(false)
       sessionStorage.setItem("access_token", null)
 

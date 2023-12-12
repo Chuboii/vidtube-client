@@ -205,7 +205,7 @@ function DesktopVideoUpload() {
               dispatch({ type: "TOGGLE_VIDEO_COMP", payload: false });
             }
             else {
-                toast.error('You must provide all information!', {
+                toast.error('You must provide all fields!', {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,

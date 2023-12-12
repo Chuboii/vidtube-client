@@ -71,7 +71,7 @@ function MobileVideoUpload( {
     setPercentVideo] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  
+
   useEffect(() => {
     const tagInput = tagInputRef.current;
   
@@ -258,7 +258,7 @@ function MobileVideoUpload( {
           type: "TOGGLE_VIDEO_COMP", payload: true
         });
       } else {
-        toast.error('Connection timeout!', {
+        toast.error('You must complete all fields', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,

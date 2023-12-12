@@ -37,9 +37,9 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "../loader/Loader";
 
-const axiosBase = axios.create({
-  baseURL: "https://vidtube-l48b.onrender.com/api/",
-});
+// const axiosBase = axios.create({
+//   baseURL: "https://vidtube-l48b.onrender.com/api/",
+// });
 
 function MobileVideoUpload( {
   videoFile
@@ -239,8 +239,8 @@ function MobileVideoUpload( {
     try {
       if (values.titleValue && tags && values.descriptionValue && videoUrl && imageUrl) {
         setIsLoaded(true)
-        const res = await axiosBase.post(
-          "video",
+        const res = await axios.post(
+          "https://vidtube-l48b.onrender.com/api/video",
           {
             title: values.titleValue,
             desc: values.descriptionValue,
@@ -252,7 +252,7 @@ function MobileVideoUpload( {
             withCredentials: true,
           }
         );
-          setIsLoaded(false)
+        setIsLoaded(false)
         navigate(`/watch/${res.data._id}/${res.data.userId}`);
         dispatch({
           type: "TOGGLE_VIDEO_COMP", payload: true

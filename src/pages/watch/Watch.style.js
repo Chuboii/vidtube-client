@@ -37,7 +37,7 @@ export const FirstPart = styled.div`
 export const SecondPart = styled.div`
 @media screen and (min-width: 768px){
   width: 30%;
-   height: 100dvh;
+  
 
 }
    

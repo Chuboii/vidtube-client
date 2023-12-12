@@ -30,6 +30,12 @@ import axios from "axios";
 import {
   useNavigate
 } from "react-router-dom";
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from "../loader/Loader";
 
 const axiosBase = axios.create({
   baseURL: "https://vidtube-l48b.onrender.com/api/",
@@ -63,7 +69,8 @@ function MobileVideoUpload( {
     setPercentImage] = useState(0);
   const [percentVideo,
     setPercentVideo] = useState(0);
-
+  const [isLoaded, setIsLoaded] = useState(false);
+  
   useEffect(() => {
     const tagInput = tagInputRef.current;
 
@@ -164,7 +171,19 @@ function MobileVideoUpload( {
 
         setPercentVideo(100);
       } catch (e) {
-        console.log(e);
+        if (e.message === "timeout exceeded"  || e.message === "Network Error") {
+          setIsTriggeredVideo(false)
+          toast.error('Connection timeout! Check your internet connection!', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });   
+      }
       }
     }
 
@@ -202,14 +221,26 @@ function MobileVideoUpload( {
 
       setPercentImage(100);
     } catch (e) {
-      console.log(e);
+      if (e.message === "timeout exceeded"  || e.message === "Network Error") {
+        setIsTriggeredImage(false)
+        toast.error('Connection timeout! Check your internet connection!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });   
+    }
     }
   };
 
   const uploadData = async (e) => {
     try {
-      if (values.titleValue && tags && values.descriptionValue) {
-        setValid(true);
+      if (values.titleValue && tags && values.descriptionValue && videoUrl && imageUrl) {
+        setIsLoaded(true)
         const res = await axiosBase.post(
           "video",
           {
@@ -223,16 +254,22 @@ function MobileVideoUpload( {
             withCredentials: true,
           }
         );
-
+          setIsLoaded(false)
         navigate(`/watch/${res.data._id}/${res.data.userId}`);
         dispatch({
           type: "TOGGLE_VIDEO_COMP", payload: true
         });
       } else {
-        setValid(false);
-        dispatch({
-          type: "ERROR", payload: "You must insert all values"
-        });
+        toast.error('Connection timeout!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }); 
       }
     } catch (e) {
       console.log(e);
@@ -241,6 +278,8 @@ function MobileVideoUpload( {
 
   return (
     <>
+      {isLoaded && <Loader />}
+      <ToastContainer/>
     <DarkBg />
     <Container>
         <Icon onClick={removeVideoComponent}>
@@ -323,7 +362,8 @@ function MobileVideoUpload( {
         </Wrapper>
 
         <Button onClick={uploadData}>Upload</Button>
-      </Container> < />
+      </Container>
+    </>
   );
 }
 

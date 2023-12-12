@@ -39,7 +39,7 @@ export default function Menu() {
     })
 })
 
-
+// https://vidtube-l48b.onrender.com
   const initiateLogout = async () => {
     try {
      const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
@@ -81,7 +81,7 @@ export default function Menu() {
           <Wrapper>
             <Name>{currentUser ? currentUser.name :"" }</Name>
             <Username>@{currentUser ? currentUser.username :"" }</Username>
-            <Link className="tabs" to={'/channel'} style={{
+            <Link className="tabs" to={'channel'} style={{
               color: "red",
               textDecoration: "none",
               width: "100%",

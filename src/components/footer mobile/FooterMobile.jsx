@@ -57,8 +57,18 @@ export default function FooterMobile() {
 
   const navigateToLibrary = () => {
     if (currentUser) {
-      navigate("/")
-    } else {
+      toast.info('Library will be available soon!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    else {
       toast.error(' You must be logged in!', {
         position: "top-right",
         autoClose: 3000,
@@ -74,9 +84,19 @@ export default function FooterMobile() {
 
   const navigateToShorts = () => {
     if (currentUser) {
-      navigate("/subscriptions")
-    } else {
       toast.info('Shorts will be available soon!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    else {
+      toast.error(' You must be logged in!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -118,6 +138,7 @@ export default function FooterMobile() {
     <VideoLibraryOutlinedIcon />
     <Paragraph>Library </Paragraph>
     </Box>
-  </Footer> < />
+      </Footer>
+      </>
 )
 }

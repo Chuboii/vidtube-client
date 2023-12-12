@@ -61,16 +61,16 @@ function EmailSignin() {
     }
   }
 
-  const handleDetails = (e) => {
-    setDetails(prev => {
-      return {
-        ...details,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
+  // const handleDetails = (e) => {
+  //   setDetails(prev => {
+  //     return {
+  //       ...details,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   })
+  // }
 
-
+  // https://vidtube-l48b.onrender.com
 
   const submitForm = async (data) => {
     try {
@@ -104,10 +104,26 @@ function EmailSignin() {
       }
     }
     catch (e) {
+      setIsLoggedIn(false)
       dispatch({
         type:"ERROR", payload: e
       })
-      toast.error('Invalid credentials!', {
+      console.log(e.response)
+      if (e.response.data.message === "User does not have an account") {
+        toast.error('Account does not exist!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+
+    if (e.response.data.message === "Invalid credentials") {
+      toast.error('Incorrect Password!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -118,12 +134,28 @@ function EmailSignin() {
         theme: "colored",
       });
     }
+      
+    if (e.response.status === 500 ) {
+      toast.error('Server error!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
+    }
   }
 
 
 
   return (
     <>
+      <ToastContainer/>
     {
       isLoggedIn && <Loader />
     } < Container >
@@ -151,7 +183,8 @@ function EmailSignin() {
 
     <Text onClick={() => navigate('/signin')}>Choose a different signin option</Text>
 
-  </Container> < />
+      </Container>
+      </>
 )
 }
 

@@ -103,6 +103,7 @@ export default function Comments() {
     </Header>
     <Main>
     <Alert> Remember to keep comments respectful and to follow our <Inner> Community Guidelines </Inner></Alert>
+       
           {commentData ? commentData.map(data => {
       const date = new Date(data.createdAt)
       return (
@@ -142,6 +143,8 @@ export default function Comments() {
           </Form>
     {
       toggleCommentForm && <CommentForm />
-    } < /Container> < / >
+        }
+      </Container>
+      </>
   )
 }

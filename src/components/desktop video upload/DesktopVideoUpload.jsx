@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import DarkBg from '../dark bg/DarkBg';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-
+import Loader from '../loader/Loader';
+import {
+    ToastContainer,
+    toast
+  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// s://vidtube-l48b.onrender.com
 const  axiosBase = axios.create({
     baseURL: "https://vidtube-l48b.onrender.com/api/",
   });
@@ -28,7 +34,7 @@ function DesktopVideoUpload() {
     const [isTriggeredImage, setIsTriggeredImage] = useState(false)
     const [percentImage, setPercentImage] = useState(0)
     const [percentVideo, setPercentVideo] = useState(0)
-
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
       const tagInput = tagInputRef.current;
@@ -111,7 +117,20 @@ function DesktopVideoUpload() {
 
         }
         catch (e) {
-            console.log(e)
+            console.log(e.message)
+            if (e.message === "timeout exceeded" || e.message === "Network Error") {
+                setIsTriggeredVideo(false)
+                toast.error('Connection timeout! Check your internet connection!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });   
+            }
         }
 
     }
@@ -150,17 +169,28 @@ function DesktopVideoUpload() {
   
         }
         catch (e) {
-            console.log(e)
+            if (e.message === "timeout exceeded"  || e.message === "Network Error") {
+                setIsTriggeredImage(false)
+                toast.error('Connection timeout! Check your internet connection!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });   
+            }
         }
 
     }
 
     const uploadData = async (e) => {
-
-    
+        
         try {
-            if (values.titleValue && tags && values.descriptionValue) {
-    setValid(true)
+            if (values.titleValue && tags && values.descriptionValue && videoUrl && imageUrl) {
+                setIsLoaded(true)
             const res = await axiosBase.post("video", {
                     title: values.titleValue,
                     desc: values.descriptionValue,
@@ -170,13 +200,21 @@ function DesktopVideoUpload() {
             }, {
                 withCredentials:true
             })
-
+              setIsLoaded(false)
               navigate(`/watch/${res.data._id}/${res.data.userId}`)
               dispatch({ type: "TOGGLE_VIDEO_COMP", payload: false });
             }
             else {
-                setValid(false)
-                dispatch({type:"ERROR", payload: "You must insert all values"})
+                toast.error('You must provide all information!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  }); 
             }
         }
         catch (e) {
@@ -186,6 +224,7 @@ function DesktopVideoUpload() {
 
     return (
         <>
+            {isLoaded && <Loader/>}
             <DarkBg/>
             <Container>
             <Icon onClick={removeVideoComponent}><CloseOutlinedIcon /> </Icon>

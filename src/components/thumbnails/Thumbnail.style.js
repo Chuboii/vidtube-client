@@ -83,7 +83,7 @@ export const Title = styled.div`
    font-weight:500;
 
    @media screen and (min-width:700px){
- width:280px;
+ width:300px;
  font-size:15px;
  line-height:19px;
  word-wrap: break-word;
@@ -104,7 +104,7 @@ export const Name = styled.div`
    margin: .3rem 0;
    
    @media screen and (min-width:700px){
-width: 100px;
+width: 150px;
 font-size:14px;
    }
    color: gray;

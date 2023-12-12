@@ -100,7 +100,7 @@ function EmailSignup() {
           if (data.password.length >= 6) {
             if (img) {
               setIsLoggedIn(true)
-              const user = await axios.post('"https://vidtube-l48b.onrender.com/api/auth/signup', {
+              const user = await axios.post('https://vidtube-l48b.onrender.com/api/auth/signup', {
                 email: data.email,
                 password: data.password,
                 name: data.name,
@@ -167,19 +167,46 @@ function EmailSignup() {
     }
     catch (e) {
       setIsLoggedIn(false)
-      dispatch({
-        type: "ERROR", payload: e
-      })
-      toast.error('Email is already in use!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      console.log(data.username)
+      if(e.response.data.message === `E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "${data.username}" }`
+      ) {
+        toast.error('Username already in use!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+
+      if (e.response.data === "Email is being used by another user") {
+        toast.error('Email is already in use!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+
+      if (e.response.status === 500 ) {
+        toast.error('Server error!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
     }
   }
 

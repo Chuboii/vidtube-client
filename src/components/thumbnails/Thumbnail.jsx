@@ -12,6 +12,8 @@ function Thumbnail({ video }) {
   const date = new Date(video ? video.createdAt : 0)
   const dispatch = useDispatch()
 
+  console.log(video)
+
   
   const enableVideoPage = (id, userId) => {
     dispatch({type:"GET_VIDEO_DATA", payload:video})

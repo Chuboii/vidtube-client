@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
       display: flex;
       margin-top: 5rem;
-      
+      overflow-y: scroll;
       @media screen and (max-width:768px){
    display: flex;
    flex-direction: column;
@@ -21,7 +21,7 @@ export const FirstPart = styled.div`
   
 
   @media screen and (min-width:768px){
-        height: 100dvh;
+        /* height: 100dvh; */
         width: 70%;
   padding: 1rem;
   padding-left: 4rem;

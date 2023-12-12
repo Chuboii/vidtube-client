@@ -36,7 +36,7 @@ function ManageVideos() {
 
   return (
       <>
-          <h1 style={{color:"white", marginTop:"6rem", marginLeft:"5rem"}}>MANAGE VIDEOS HERE</h1>
+          <h1 style={{color:"white", marginTop:"6rem", marginLeft:"5rem", fontSize:"14px"}}>MANAGE VIDEOS HERE</h1>
           <ThumbnailContainer>
               {channelVideo && channelVideo.length > 0 ?  channelVideo.map(vid => (
                   <Thumbnail key={vid._id} video={vid} />

@@ -106,7 +106,6 @@ function VideoDescript() {
             withCredentials: true
           })
 
-          console.log("now", data.data)
           const duplicate = data.data.subscribedUsers.some(el => el === pathId)
 
           if (duplicate) {

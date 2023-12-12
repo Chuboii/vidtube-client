@@ -1,12 +1,13 @@
 import "./Loader.css"
-import DarkBg from "../dark bg/DarkBg"
+import DarkBgComp from "../dark bg 2/DarkBgComp"
 export default function Loader() {
 
   return(
     <>
     <div className="container">
-    <DarkBg />
-    <span class="loader"></span>
-    </div> < />
+    <DarkBgComp />
+    <span className="loader"></span>
+      </div>
+      </>
   )
 }

@@ -20,6 +20,13 @@ import NightlightRoundOutlinedIcon from "@mui/icons-material/NightlightRoundOutl
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import axios from 'axios'
 import { signInWitGoogle } from "../../utils/firebase/firebase";
+import Loader from '../loader/Loader';
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Menu() {
   const disableBgTouch = useSelector((state) => state.toggle.disableBg);
@@ -28,6 +35,7 @@ export default function Menu() {
   );
   const currentUser = useSelector((state)=> state.user.currentUser)
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     const tabs = document.querySelectorAll('.tabs');
@@ -42,8 +50,9 @@ export default function Menu() {
 // https://vidtube-l48b.onrender.com
   const initiateLogout = async () => {
     try {
+      setIsLoaded(true)
       const res = await axios.post("https://vidtube-l48b.onrender.com/api/auth/logout", { withCredentials: true })
-      
+       setIsLoaded(false)
       sessionStorage.setItem("access_token", null)
 
       dispatch({ type: "GET_USER_DATA", payload: null })
@@ -70,12 +79,23 @@ export default function Menu() {
       dispatch({type:"TOGGLE_MOBILE_MENU", payload:false})
     }
     catch (e) {
-      dispatch({ type: "ERROR", payload: "Unable to logout due to server error"})
+      toast.error('Unable to logout due to server error!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });   
     }
   }
 
   return (
     <>
+      <ToastContainer/>
+      { isLoaded && <Loader /> }
       {disableBgTouch && <GlobalStyles overflow={"hidden"} />}
       {/* {disableBgTouch && <DarkBg />} */}
       <Container r={toggleMobileMenu ? "0" : "-5000px"}>

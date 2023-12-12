@@ -278,7 +278,6 @@ function MobileVideoUpload( {
     <>
       {isLoaded && <Loader />}
       <ToastContainer/>
-    <DarkBg />
     <Container>
         <Icon onClick={removeVideoComponent}>
           <CloseOutlinedIcon />{" "}

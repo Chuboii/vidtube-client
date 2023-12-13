@@ -35,6 +35,7 @@ function DesktopVideoUpload() {
     const [percentImage, setPercentImage] = useState(0)
     const [percentVideo, setPercentVideo] = useState(0)
     const [isLoaded, setIsLoaded] = useState(false)
+    const currentUser = useSelector((state) => state.user.currentUser)
 
     useEffect(() => {
       const tagInput = tagInputRef.current;
@@ -196,7 +197,10 @@ function DesktopVideoUpload() {
                     desc: values.descriptionValue,
                     thumbnail: imageUrl,
                     videoUrl: videoUrl,
-                    tags: tags
+                  tags: tags,
+                name: currentUser.name,
+                img: currentUser.img,
+                _id: currentUser._id
             }, {
                 withCredentials:true
             })

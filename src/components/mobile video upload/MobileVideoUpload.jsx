@@ -70,6 +70,7 @@ function MobileVideoUpload( {
   const [percentVideo,
     setPercentVideo] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const currentUser = useSelector((state) => state.user.currentUser)
 
 
   useEffect(() => {
@@ -247,6 +248,9 @@ function MobileVideoUpload( {
             thumbnail: imageUrl,
             videoUrl: videoUrl,
             tags: tags,
+            name: currentUser.name,
+            img: currentUser.img,
+            _id: currentUser._id
           },
           {
             withCredentials: true,

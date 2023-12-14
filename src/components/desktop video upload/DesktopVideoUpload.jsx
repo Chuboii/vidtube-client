@@ -204,7 +204,8 @@ function DesktopVideoUpload() {
             }, {
                 withCredentials:true
             })
-              setIsLoaded(false)
+             setIsLoaded(false)
+                
               navigate(`/watch/${res.data._id}/${res.data.userId}`)
                 dispatch({ type: "TOGGLE_VIDEO_COMP", payload: false });
                 dispatch({

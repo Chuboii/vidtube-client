@@ -35,6 +35,7 @@ export default function CommentForm() {
         
         dispatch({type:'GET_ALL_COMMENT', payload:allComment.data})
       }
+      setValue("")
       else {
         dispatch({ type: "COMMENT_ERROR", payload: "Please provide an input" })
       }

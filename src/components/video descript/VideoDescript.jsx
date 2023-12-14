@@ -163,7 +163,7 @@ function VideoDescript() {
         if (duplicate) {
           setIsSubscribed(false)
           const newData = await
-          axios.put(`http://localhost:8080/api/user/decresub/${pathId}` {
+          axios.put(`http://localhost:8080/api/user/decresub/${pathId}`, {
             userId: currentUser._id
           },
             {

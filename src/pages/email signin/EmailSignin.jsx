@@ -187,7 +187,7 @@ function EmailSignin() {
 
               <Wrapper>
           <Label htmlFor="password">Password</Label>
-          <Input name="passkey"
+          <Input name="passkey" type='password'
       {...register("passkey", registerOptions.passkey)}
       />
             {errors.passkey && <span style={ { color: "red", fontSize: "13px",

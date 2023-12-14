@@ -35,6 +35,6 @@ const middleware = [logger]
 
 const composedEnhancers = compose(applyMiddleware(...middleware))
 
-export const store = createStore(persistedReducer, undefined, composedEnhancers)
+export const store = createStore(persistedReducer)
 
 export const persistor = persistStore(store)

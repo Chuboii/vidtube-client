@@ -264,14 +264,14 @@ function EmailSignup() {
 
       <Wrapper>
       <Label htmlFor="password">Password</Label>
-      <Input name="password"
+      <Input name="password" type='password' 
       {...register("password", registerOptions.password)} />
       {errors.password && <span style={ { color: "red", fontSize: "13px",
         marginTop: '.3rem' }}>{errors.password.message}</span>}
       </Wrapper>
       <Wrapper>
       <Label htmlFor="confirm-password">Confirm Password</Label>
-      <Input name="confirmPassword"       {...register("confirmPassword",
+      <Input name="confirmPassword"  type='password'      {...register("confirmPassword",
         registerOptions.confirmPassword)} />
       {errors.confirmPassword && <span style={ { color: "red", fontSize: "13px",
         marginTop: '.3rem' }}>{errors.confirmPassword.message}</span>}
@@ -287,7 +287,8 @@ function EmailSignup() {
           </Form>
       <Text onClick={() => navigate('/signin')}>Choose a different signin option</Text>
 
-    </Container> < />
+      </Container>
+    </>
   )
 }
 

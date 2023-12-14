@@ -21,7 +21,7 @@ function Thumbnail({ video }) {
   const deleteVideo = async (e) => {
     e.stopPropagation()
     try {
-      const res = await axios.delete(`http://localhost:8080/api/video/delete/${video._id}`, {
+      const res = await axios.delete(`https://vidtube-l48b.onrender.com/api/video/delete/${video._id}`, {
         withCredentials:true
       })
 
@@ -41,7 +41,7 @@ function Thumbnail({ video }) {
       }} >
         <ImageBox>
           <Img src={video.thumbnail} />
-          <VideoLength>5:00</VideoLength>
+          {/* <VideoLength>5:00</VideoLength> */}
           { location.pathname === '/manage/videos' ?
             <IconBox>
               <Icon onClick={deleteVideo}><DeleteForeverIcon sx={{ fontSize: "30px" }} /> </Icon>

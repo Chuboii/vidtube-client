@@ -258,9 +258,14 @@ function MobileVideoUpload( {
         );
         setIsLoaded(false)
         navigate(`/watch/${res.data._id}/${res.data.userId}`);
+     
         dispatch({
-          type: "TOGGLE_VIDEO_COMP", payload: true
+          type: "TOGGLE_VIDEO_COMP", payload: false
         });
+
+        dispatch({
+          type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
+        })
       } else {
         toast.error('You must complete all fields', {
           position: "top-right",

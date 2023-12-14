@@ -4,7 +4,7 @@ import {useEffect, useReducer, useState} from "react"
 import Categories from '../../components/category/Categories'
 import axios from 'axios'
 import ThumbnailContainer from '../../components/thumbnail container/ThumbnailContainer'
-import { useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import SkeletonLoading from '../../components/skeleton/Skeleton'
 import { useDispatch } from 'react-redux'
 
@@ -14,13 +14,20 @@ function Explore() {
   const [videos, setVideos] = useState(null)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+ const location = useLocation()
 
   useEffect(() => {
     dispatch({ type: "GET_SEARCH_VALUE", payload: "" })
     // https://vidtube-l48b.onrender.com
-    dispatch({
-      type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
-    })
+    if (location.pathname === '/') {
+      dispatch({
+        type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
+      })
+      
+      dispatch({
+        type: "TOGGLE_MOBILE_VIDEO_UPLOAD", payload: false
+      })
+    }
     const getData = async () => {
       try {
         const res = await axios.get(" https://vidtube-l48b.onrender.com/api/video/random")

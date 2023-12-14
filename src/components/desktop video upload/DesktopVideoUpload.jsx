@@ -210,6 +210,9 @@ function DesktopVideoUpload() {
                 dispatch({ type: "TOGGLE_VIDEO_COMP", payload: false });
                 dispatch({
                     type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
+                })
+                dispatch({
+                    type: "TOGGLE_MOBILE_VIDEO_UPLOAD", payload: false
                   })
             }
             else {

@@ -266,6 +266,10 @@ function MobileVideoUpload( {
         dispatch({
           type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
         })
+        
+        dispatch({
+          type: "TOGGLE_MOBILE_VIDEO_UPLOAD", payload: false
+        })
       } else {
         toast.error('You must complete all fields', {
           position: "top-right",

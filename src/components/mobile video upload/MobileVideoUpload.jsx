@@ -250,7 +250,7 @@ function MobileVideoUpload( {
             tags: tags,
             name: currentUser.name,
             img: currentUser.img,
-            _id: currentUser._id
+            userId: currentUser._id
           },
           {
             withCredentials: true,

@@ -20,7 +20,7 @@ function Explore() {
     // https://vidtube-l48b.onrender.com
     const getData = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/video/random")
+        const res = await axios.get(" https://vidtube-l48b.onrender.com/api/video/random")
         const data = res.data
 
         setVideos(data)

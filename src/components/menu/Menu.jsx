@@ -66,7 +66,7 @@ export default function Menu() {
   const initiateSwitchingAcct = async () => {
     try {
       const { user } = await signInWitGoogle()
-      const currUser = await axios.post("auth/google", {
+      const currUser = await axios.post("https://vidtube-l48b.onrender.com/api/auth/google", {
         name: user.displayName,
         email: user.email,
         img: user.photoURL

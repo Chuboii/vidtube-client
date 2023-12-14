@@ -20,7 +20,7 @@ function Video() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const video = await axios.put(`http://localhost:8080/api/video/views/${pathId}`, {
+                const video = await axios.put(`https://vidtube-l48b.onrender.com/api/video/views/${pathId}`, {
                     body: ""
                 }, {
                     withCredentials:true

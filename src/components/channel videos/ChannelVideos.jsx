@@ -68,7 +68,8 @@ function ChannelVideos() {
       )
     }): error ? <EmptyContent
       />: <SkeletonLoading />}
-          </ThumbnailContainer> < />
+      </ThumbnailContainer>
+    </>
   )
 }
 

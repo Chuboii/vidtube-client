@@ -43,7 +43,7 @@ function TagVideoPage() {
         const getData = async () => {
             try {
                 if (location.pathname === '/category/trending') {
-                    const videoData = await axios.get(`http://localhost:8080/api/video/trending`, {
+                    const videoData = await axios.get(`https://vidtube-l48b.onrender.com/api/video/trending`, {
                         withCredentials: true
                     })
                     setVideoData(videoData.data)

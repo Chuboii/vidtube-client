@@ -100,6 +100,7 @@ export default function Upload() {
           </Icon>
           <Span> Create a video </Span>
         </Box>
-  </Container> < />
+      </Container>
+    </>
 );
 }

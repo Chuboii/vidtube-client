@@ -62,7 +62,7 @@ const userInfo = useSelector((state) => state.user.otherUser)
         
         const allComment = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`)
        
-        const res = await axios.post("http://localhost:8080/api/notification", {
+        const res = await axios.post("  https://vidtube-l48b.onrender.com/api/notification", {
           userId: userInfo._id,
           name: currentUser.name,
           photoUrl: currentUser.img,

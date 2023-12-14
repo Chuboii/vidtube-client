@@ -22,7 +22,11 @@ export default function CommentForm() {
     try {
       if (value) {
         const data = await axios.post(`https://vidtube-l48b.onrender.com/api/comment/${videoId}/new`, {
-          comment: value
+          comment: value,
+          name: currentUser.name,
+          userId: currentUser._id,
+          videoId,
+          photoURL: currentUser.img
         },
           {
             withCredentials: true

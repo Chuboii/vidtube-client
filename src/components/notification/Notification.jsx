@@ -34,6 +34,7 @@ import {
 function Notification() {
   const dispatch = useDispatch()
   const notify = useSelector((state) => state.notify.notification)
+  const currentUser = useSelector((state) => state.user.currentUser)
   const toggleNotify = useSelector((state) => state.toggle.toggleNoti)
   const toggleNotification = () => dispatch({
     type: "TOGGLE_NOTIFICAION", payload: false
@@ -41,41 +42,44 @@ function Notification() {
 
   useEffect(() => {
     const getData = async () => {
-        try {
-          const data = await axios.get(`https://vidtube-l48b.onrender.com/api/notification`, {
-            withCredentials: true
-          })
+      try {
+        const data = await
+        axios.get(`https://vidtube-l48b.onrender.com/api/notification`, {
+          userId: currentUser._id
+        }, {
+          withCredentials: true
+        })
 
-          dispatch({
-            type: 'GET_NOTIFICATION', payload: data.data
-          })
-        }
-        catch (e) {
-          dispatch({
-            type: 'NOTIFICATION_ERROR', payload: e
-          })
-        }
-
+        dispatch({
+          type: 'GET_NOTIFICATION', payload: data.data
+        })
+      }
+      catch (e) {
+        dispatch({
+          type: 'NOTIFICATION_ERROR', payload: e
+        })
       }
 
-      getData()
-    },
+    }
+
+    getData()
+  },
     [])
 
 
-    return (
-      <>
-      <DarkBg />
-      <Container r={toggleNotify ? 0: "-500px" }>
+  return (
+    <>
+    <DarkBg />
+    <Container r={toggleNotify ? 0: "-500px" }>
           <Header>
               <CloseIcon sx={ { fontSize: "30px" }} onClick={ toggleNotification} />
            <H2>Notifications</H2>
           </Header>
               <Wrap>
               {notify && notify.length > 0 ? notify.map(data => {
-        const date = new Date(data.createdAt)
-        return(
-          <Wrapper key={data._id}>
+      const date = new Date(data.createdAt)
+      return(
+        <Wrapper key={data._id}>
                       <Image>
                           <Img src={data.photoUrl} />
                       </Image>
@@ -89,14 +93,14 @@ function Notification() {
                                   <VideoName>{data.videoName}</VideoName> <Video src={data.thumbnail}></Video>
                               </VideoText>: ''}
                               <Time>{formatDistanceToNow(date, {
-            addSuffix: true
-          })}</Time>
+          addSuffix: true
+        })}</Time>
                       </Box>
                   </Wrapper>
-        )}): "" }
+      )}): "" }
               </Wrap>
             </Container> < />
-    )
-  }
+  )
+}
 
-  export default Notification
+export default Notification

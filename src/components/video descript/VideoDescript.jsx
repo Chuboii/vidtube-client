@@ -162,8 +162,9 @@ function VideoDescript() {
 
         if (duplicate) {
           setIsSubscribed(false)
-          const newData = await axios.put(`http://localhost:8080/api/user/decresub/${pathId}`, {
-            body: ""
+          const newData = await
+          axios.put(`http://localhost:8080/api/user/decresub/${pathId}` {
+            userId: currentUser._id
           },
             {
               withCredentials: true
@@ -175,7 +176,7 @@ function VideoDescript() {
         } else {
           setIsSubscribed(true)
           const newData = await axios.put(`http://localhost:8080/api/user/incresub/${pathId}`, {
-            name: "hey"
+            userId: currentUser._id
           },
             {
               withCredentials: true
@@ -209,102 +210,102 @@ function VideoDescript() {
           progress: undefined,
           theme: "colored",
         })
-      
+
+      }
+
     }
-
+    catch(e) {
+      console.log(e)
+    }
   }
-  catch(e) {
-    console.log(e)
-  }
-}
 
-const incrementLikes = async () => {
-  try {
-    if (currentUser) {
-      const data = await axios.get(`http://localhost:8080/api/video/find/${videoId}`, {
-        withCredentials: true
-      })
-
-      const duplicate = data.data.likes.some(el => el === videoId)
-
-      if (duplicate) {
-        setIsLiked(false)
-        const newData = await axios.put(`http://localhost:8080/api/video/delike/${videoId}`, {
-          body: ""
-        },
-          {
-            withCredentials: true
-          }
-        )
-        dispatch({
-          type: "GET_VIDEO_DATA", payload: newData.data
-        })
-      } else {
-        setIsLiked(true)
-        const newData = await axios.put(`http://localhost:8080/api/video/like/${videoId}`, {
-          body: ""
-        },
-          {
-            withCredentials: true
-          }
-        )
-        dispatch({
-          type: "GET_VIDEO_DATA", payload: newData.data
-        })
-
-        const res = await axios.post("http://localhost:8080/api/notification", {
-          userId: userInfo._id,
-          name: newData.data.name,
-          photoUrl: newData.data.img,
-          desc: "just liked your video",
-          thumbnail: videoInfo ? videoInfo.thumbnail: '',
-          videoName: videoInfo ? videoInfo.title: ''
-        }, {
+  const incrementLikes = async () => {
+    try {
+      if (currentUser) {
+        const data = await axios.get(`http://localhost:8080/api/video/find/${videoId}`, {
           withCredentials: true
         })
 
-        console.log(res)
+        const duplicate = data.data.likes.some(el => el === videoId)
 
+        if (duplicate) {
+          setIsLiked(false)
+          const newData = await axios.put(`http://localhost:8080/api/video/delike/${videoId}`, {
+            body: ""
+          },
+            {
+              withCredentials: true
+            }
+          )
+          dispatch({
+            type: "GET_VIDEO_DATA", payload: newData.data
+          })
+        } else {
+          setIsLiked(true)
+          const newData = await axios.put(`http://localhost:8080/api/video/like/${videoId}`, {
+            body: ""
+          },
+            {
+              withCredentials: true
+            }
+          )
+          dispatch({
+            type: "GET_VIDEO_DATA", payload: newData.data
+          })
+
+          const res = await axios.post("http://localhost:8080/api/notification", {
+            userId: userInfo._id,
+            name: newData.data.name,
+            photoUrl: newData.data.img,
+            desc: "just liked your video",
+            thumbnail: videoInfo ? videoInfo.thumbnail: '',
+            videoName: videoInfo ? videoInfo.title: ''
+          }, {
+            withCredentials: true
+          })
+
+          console.log(res)
+
+        }
+      } else {
+        toast.error(' You must be logged in!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
-    } else {
-      toast.error(' You must be logged in!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+    }
+    catch (e) {
+      console.log(e)
     }
   }
-  catch (e) {
-    console.log(e)
-  }
-}
 
-const handleShareBtn = async () => {
-  try {
-    await navigator.share({
-      url: location.pathname,
-      name: videoInfo ? videoInfo.name: "",
-      text: videoInfo ? videoInfo.desc: "",
-      img: videoInfo ? videoInfo.thumbnail: ""
-    })
+  const handleShareBtn = async () => {
+    try {
+      await navigator.share({
+        url: location.pathname,
+        name: videoInfo ? videoInfo.name: "",
+        text: videoInfo ? videoInfo.desc: "",
+        img: videoInfo ? videoInfo.thumbnail: ""
+      })
+    }
+    catch (e) {
+      console.log(e)
+    }
   }
-  catch (e) {
-    console.log(e)
-  }
-}
 
-return (
-  <>
-  <ToastContainer
-    theme="colored"
-    />
+  return (
+    <>
+    <ToastContainer
+      theme="colored"
+      />
 
-  <Container>
+    <Container>
             <Description>
                     <FirstPart>
                         <Title>
@@ -315,8 +316,8 @@ return (
                {videoInfo ? videoInfo.views: ""} views
                </Views>
                <Time> {videoInfo ? formatDistanceToNow(date, {
-    addSuffix: true
-  }): ""}</Time>
+      addSuffix: true
+    }): ""}</Time>
                         </Box>
                         <DescriptionVideo />
             </FirstPart>
@@ -342,8 +343,8 @@ return (
                         <Icons>
                         <LikeButton onClick={incrementLikes}>
                             {isLiked ?
-    <ThumbUpIcon sx={ { fontSize: "20px" }} />: <ThumbUpOffAltIcon />
-    }
+      <ThumbUpIcon sx={ { fontSize: "20px" }} />: <ThumbUpOffAltIcon />
+      }
                             <Span>{videoInfo ? videoInfo.likesCount: "" }</Span>
                         </LikeButton>
                         <ShareButton onClick={handleShareBtn}>
@@ -358,7 +359,7 @@ return (
                     </SecondPart>
             </Description>
             </Container> < />
-)
+  )
 }
 
 export default VideoDescript

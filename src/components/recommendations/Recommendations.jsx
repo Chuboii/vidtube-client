@@ -17,7 +17,7 @@ function Recommendations() {
     useEffect(() => {
         const getData = async () => {
             try {
-                const data = await axios.get(`https://vidtube-l48b.onrender.com/api/video/${videoId}/recommendation`)
+                const data = await axios.get(`http://localhost:8080/api/video/${videoId}/recommendation`)
                 dispatch({ type: "GET_RECOMMENDED_VIDEO_DATA", payload: data.data })
             }
             catch (e) {
@@ -29,6 +29,7 @@ function Recommendations() {
 
       
     const enableVideoPage = (data) => {
+        console.log(data)
         dispatch({type:"GET_VIDEO_DATA", payload:data})
         navigate(`/watch/${data._id}/${data.userId}`)
     }

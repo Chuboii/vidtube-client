@@ -39,7 +39,7 @@ export default function CommentPreview() {
 
     const getData = async () => {
       try {
-        const data = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`, {
+        const data = await axios.get(`http://localhost:8080/api/comment/find/${videoId}`, {
           withCredentials: true
         })
 
@@ -58,7 +58,7 @@ export default function CommentPreview() {
 
     const getCommentPreview = async () => {
       try {
-        const data = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/previewcomment/${videoId}`, {
+        const data = await axios.get(`http://localhost:8080/api/comment/previewcomment/${videoId}`, {
           withCredentials: true
         })
 

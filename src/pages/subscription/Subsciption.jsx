@@ -35,7 +35,7 @@ function Subsciption() {
     const getData = async () => {
       try {
     
-        const data = await axios.get("http://localhost:8080/api/video/subvideo", {
+        const data = await axios.get("https://vidtube-l48b.onrender.com/api/video/subvideo", {
           params: {
             id: currentUser._id
           }

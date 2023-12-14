@@ -18,6 +18,9 @@ function Explore() {
   useEffect(() => {
     dispatch({ type: "GET_SEARCH_VALUE", payload: "" })
     // https://vidtube-l48b.onrender.com
+    dispatch({
+      type: "TOGGLE_MOBILE_VIDEO_COMP", payload: false
+    })
     const getData = async () => {
       try {
         const res = await axios.get(" https://vidtube-l48b.onrender.com/api/video/random")

@@ -82,7 +82,7 @@ function DesktopComment() {
     <>
     <Container>
               <Header>
-              <H2>{allComments ? allComments.length: 0} comments</H2>
+              <H2>{allComments && allComments.length > 0 ? allComments.length: 0} comments</H2>
               </Header>
 
               <Form onSubmit={submitComment}>

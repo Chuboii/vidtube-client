@@ -58,11 +58,9 @@ export default function CommentPreview() {
 
     const getCommentPreview = async () => {
       try {
-        const data = await axios.get(`http://localhost:8080/api/comment/previewcomment/${videoId}`, {
+        const data = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/previewcomment/${videoId}`, {
           withCredentials: true
         })
-
-        console.log(data)
 
         dispatch({
           type: "GET_COMMENT_PREVIEW", payload: data.data

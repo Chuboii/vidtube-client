@@ -329,7 +329,7 @@ function VideoDescript() {
                               </Name>
                               <SubscriberCount>
                                 {userInfo ? userInfo.subscribers: 0}
-                                <span style={ { marginLeft: ".4rem" }}> subscribers </span>
+                                <span style={ { marginLeft: ".2rem" }}> subscribers </span>
                   </SubscriberCount>
                   </Wrap>
                             </Box>

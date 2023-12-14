@@ -120,10 +120,10 @@ export default function Comments() {
                   <Text>
                    {data.comment}
                   </Text>
-                  <Icon>
+                  {/* <Icon>
                     <ThumbUpIcon sx={ { fontSize: "15px" }} />
                     <Span> 7.5K </Span>
-                  </Icon>
+                  </Icon> */}
                 </Box>
                 <MoreVertIcon sx={ { position: "absolute", right: ".5rem" }} />
               </Comment>

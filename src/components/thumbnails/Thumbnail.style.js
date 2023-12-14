@@ -65,6 +65,8 @@ width:40px;
 height: 40px;
 border-radius: 50%;
 margin-right: 1rem;
+object-fit: cover;
+  object-position: center;
 `
 
 export const PostDescript = styled.div`

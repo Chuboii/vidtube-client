@@ -138,4 +138,6 @@ export const ProfileImg = styled.img`
   width:25px;
   height:25px;
   border-radius:50%;
+  object-fit: cover;
+  object-position: center;
 `

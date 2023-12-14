@@ -50,7 +50,7 @@ function Thumbnail({ video }) {
           : ""}
         </ImageBox>
         <Description>
-          <ProfilePhoto src={video.img} />
+          <ProfilePhoto src={video.photoUrl} />
           <PostDescript>
             <Title h={50}>{video.title} </Title>
             <MetaTags>

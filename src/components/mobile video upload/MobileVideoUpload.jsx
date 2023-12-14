@@ -249,7 +249,7 @@ function MobileVideoUpload( {
             videoUrl: videoUrl,
             tags: tags,
             name: currentUser.name,
-            img: currentUser.img,
+            photoUrl: currentUser.img,
             userId: currentUser._id
           },
           {

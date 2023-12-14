@@ -38,6 +38,7 @@ export default function CommentForm() {
     setValue] = useState("")
   const dispatch = useDispatch()
   const location = useLocation()
+  const userInfo = useSelector((state) => state.user.otherUser)
   const videoId = location.pathname.split("/")[2]
   const emojis = ["❤️",
     "😂",
@@ -46,6 +47,7 @@ export default function CommentForm() {
     "😥",
     "😅",
     "😊"]
+  
 
   const submitComment = async (e) => {
     e.preventDefault()
@@ -62,6 +64,20 @@ export default function CommentForm() {
             withCredentials: true
           })
         const allComment = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`)
+
+        const res = await axios.post("http://localhost:8080/api/notification", {
+          userId: userInfo._id,
+          name: currentUser.name,
+          photoUrl: currentUser.img,
+          desc: "just commented on your video",
+        }, {
+          withCredentials: true
+        })
+
+        dispatch({
+          type: "TOGGLE_COMMENT_FORM", payload: false
+        })
+      
 
         dispatch({
           type: 'GET_ALL_COMMENT', payload: allComment.data

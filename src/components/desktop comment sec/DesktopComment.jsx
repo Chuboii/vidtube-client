@@ -39,7 +39,7 @@ function DesktopComment() {
   const [value,
     setValue] = useState("")
   const videoId = location.pathname.split("/")[2]
-
+const userInfo = useSelector((state) => state.user.otherUser)
   const changeValue = (e) => {
     setValue(e.target.value)
   }
@@ -59,7 +59,17 @@ function DesktopComment() {
           {
             withCredentials: true
           })
+        
         const allComment = await axios.get(`https://vidtube-l48b.onrender.com/api/comment/find/${videoId}`)
+       
+        const res = await axios.post("http://localhost:8080/api/notification", {
+          userId: userInfo._id,
+          name: currentUser.name,
+          photoUrl: currentUser.img,
+          desc: "just commented on your video",
+        }, {
+          withCredentials: true
+        })
 
         dispatch({
           type: 'GET_ALL_COMMENT', payload: allComment.data
@@ -117,7 +127,8 @@ function DesktopComment() {
                           </Wrapper>
         )}): '' }
               </Main>
-        </Container> < />
+      </Container>
+    </>
   )
 }
 

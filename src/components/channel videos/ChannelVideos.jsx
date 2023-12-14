@@ -32,9 +32,9 @@ function ChannelVideos() {
         const data = await
         axios.get("https://vidtube-l48b.onrender.com/api/video/channel",
           {
-            userId: currentUser._id
-          }, {
-            withCredentials: true
+            params: {
+              userId: currentUser._id
+            }
           })
 
         dispatch({

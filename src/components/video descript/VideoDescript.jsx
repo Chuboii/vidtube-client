@@ -86,11 +86,6 @@ function VideoDescript() {
         dispatch({
           type: "ERROR", payload: e
         })
-
-
-        //   if (e.response.data.status === 500) {
-        //     navigate("/server-error")
-        //  }
       }
     }
     getData()

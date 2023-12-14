@@ -30,15 +30,15 @@ function Subsciption() {
 
   // https://vidtube-l48b.onrender.com/
 
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await
-        axios.get("https://vidtube-l48b.onrender.com/api/video/subvideo", {
-          id:
-          currentUser._id
-        }, {
-          withCredentials: true
+    
+        const data = await axios.get("http://localhost:8080/api/video/subvideo", {
+          params: {
+            id: currentUser._id
+          }
         })
 
         if (data) {

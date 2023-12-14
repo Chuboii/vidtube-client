@@ -44,11 +44,11 @@ function Notification() {
     const getData = async () => {
       try {
         const data = await
-        axios.get(`https://vidtube-l48b.onrender.com/api/notification`, {
-          userId: currentUser._id
-        }, {
-          withCredentials: true
-        })
+          axios.get(`https://vidtube-l48b.onrender.com/api/notification`, {
+            params: {
+              userId: currentUser._id
+            }
+          })
 
         dispatch({
           type: 'GET_NOTIFICATION', payload: data.data
@@ -99,7 +99,8 @@ function Notification() {
                   </Wrapper>
       )}): "" }
               </Wrap>
-            </Container> < />
+      </Container>
+    </>
   )
 }
 

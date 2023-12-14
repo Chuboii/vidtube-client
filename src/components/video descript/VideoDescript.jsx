@@ -17,6 +17,7 @@ import {
   ShareButton,
   MoreButton,
   Tags,
+  Wrap,
   More,
   SubscriberCount,
   Time
@@ -321,14 +322,16 @@ function VideoDescript() {
 
                         <UserInfo>
                         <Box>
-                            <Img src={userInfo ? userInfo.img: ""} />
-                            <Name>
+                <Img src={userInfo ? userInfo.img : ""} />
+                <Wrap>
+                  <Name>
                                 {userInfo ? userInfo.name: ""}
                               </Name>
                               <SubscriberCount>
                                 {userInfo ? userInfo.subscribers: 0}
                                 <span style={ { marginLeft: ".4rem" }}> subscribers </span>
-                              </SubscriberCount>
+                  </SubscriberCount>
+                  </Wrap>
                             </Box>
                         <SubscribeButton onClick={increaseSubscribers}>
                             {isSubscribed ? "subscribed": "subscribe"}

@@ -154,7 +154,13 @@ border-radius:20px;
     font-size: 16px;
 }
 `
+export const Wrap = styled.div`
 
+@media screen and (max-width:768px){
+  display: flex;
+  flex-direction: column;
+}
+`
 
 export const MoreButton = styled.div`
   display:flex;

@@ -142,7 +142,7 @@ function VideoDescript() {
     getIsLikedData()
   },
     [dispatch,
-      isLiked])
+      isLiked, videoId, pathId])
 
   const increaseSubscribers = async () => {
 

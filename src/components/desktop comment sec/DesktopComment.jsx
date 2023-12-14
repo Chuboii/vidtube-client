@@ -44,7 +44,6 @@ const userInfo = useSelector((state) => state.user.otherUser)
     setValue(e.target.value)
   }
 
-
   const submitComment = async (e) => {
     e.preventDefault()
     try {

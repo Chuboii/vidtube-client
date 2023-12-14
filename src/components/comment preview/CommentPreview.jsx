@@ -74,7 +74,7 @@ export default function CommentPreview() {
     }
     getCommentPreview()
 
-  }, [])
+  }, [videoId])
 
 
 

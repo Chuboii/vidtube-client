@@ -13,7 +13,7 @@ export const Text = styled.div`
 font-size: 17px;
 margin-top:.4rem;
 
-@media screen (max-width:768px){
+@media screen and (max-width:768px){
 font-size:13px;
 }
 `
@@ -23,7 +23,7 @@ font-size:17px ;
 align-items:center;
 margin-right:.3rem;
 
-@media screen (max-width:768px){
+@media screen and (max-width:768px){
 font-size:13px;
 }
 `
